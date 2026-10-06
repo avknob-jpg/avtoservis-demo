@@ -127,9 +127,8 @@ ${has(S.reviews) ? section("reviews", "Отзывы клиентов", `
       <div class="msgr">
         ${S.whatsapp ? `<a class="btn btn--ghost" href="https://wa.me/${esc(S.whatsapp)}" target="_blank" rel="noopener">${icon("chat")} WhatsApp</a>` : ""}
         ${S.telegram ? `<a class="btn btn--ghost" href="https://t.me/${esc(S.telegram)}" target="_blank" rel="noopener">${icon("chat")} Telegram</a>` : ""}
-        ${S.max ? `<a class="btn btn--ghost" href="${esc(S.max)}" target="_blank" rel="noopener">${icon("chat")} Max</a>` : ""}
       </div>
-      ${S.map ? `<iframe class="map" title="Карта" loading="lazy" src="https://yandex.ru/map-widget/v1/?${S.map.query ? `mode=search&text=${encodeURIComponent(S.map.query)}&z=${S.map.zoom || 16}` : `ll=${S.map.lon},${S.map.lat}&z=${S.map.zoom || 16}&pt=${S.map.lon},${S.map.lat},pm2rdm`}"></iframe>` : ""}
+      ${S.map ? `<iframe class="map" title="Карта" loading="lazy" src="https://yandex.ru/map-widget/v1/?ll=${S.map.lon},${S.map.lat}&z=${S.map.zoom || 16}&pt=${S.map.lon},${S.map.lat},pm2rdm"></iframe>` : ""}
     </aside>
   </div>
 </section>
@@ -164,7 +163,7 @@ ${has(S.faq) ? section("faq", "Частые вопросы", `
     name: S.name,
     telephone: S.phone,
     address: { "@type": "PostalAddress", addressLocality: S.city, streetAddress: S.address },
-    geo: S.map && S.map.lat && { "@type": "GeoCoordinates", latitude: S.map.lat, longitude: S.map.lon },
+    geo: S.map && { "@type": "GeoCoordinates", latitude: S.map.lat, longitude: S.map.lon },
   });
   document.head.appendChild(ld);
 
